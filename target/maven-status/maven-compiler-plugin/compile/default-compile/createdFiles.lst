@@ -1,0 +1,5 @@
+View\GameView$1.class
+Controller\GameController.class
+Model\Card.class
+Model\CardSuit.class
+View\GameView.class
