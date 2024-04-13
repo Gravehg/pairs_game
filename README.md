@@ -1,5 +1,4 @@
 # Game of card pairs
-
 A simple implementation of a game of pairs of cards using the Java Programming Language and Java Swing Components
 
 ## Possible improvements
