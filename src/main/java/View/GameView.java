@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import javax.swing.border.LineBorder;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
@@ -35,6 +36,7 @@ public class GameView extends javax.swing.JFrame {
     public GameView() {
         initComponents();
         initCardBoard();
+        this.setPreferredSize(new Dimension(820,600));
     }
     
     
@@ -51,8 +53,8 @@ public class GameView extends javax.swing.JFrame {
     }
 
     private void initCardBoard(){
-        int columnSpacing = 20;
-        int rowSpacing = 20;
+        int columnSpacing = 40;
+        int rowSpacing = 40;
         int buttonWidth = 100;
         int buttonHeight = 100;
         JPanel bgPanel = new JPanel();
@@ -61,12 +63,14 @@ public class GameView extends javax.swing.JFrame {
         for(int i = 0; i < NUM_ROWS; i++){
             for(int j = 0; j < NUM_COLS; j++){
                    cardButtons[i][j] = new JButton();
-                   bgPanel.add(cardButtons[i][j], new AbsoluteConstraints(j*(buttonWidth+columnSpacing),i*(buttonHeight+rowSpacing), buttonWidth, buttonHeight));
-                   cardButtons[i][j].setBorder(new LineBorder(Color.BLACK, 2));
+                   bgPanel.add(cardButtons[i][j], new AbsoluteConstraints(j*buttonWidth+columnSpacing,i*buttonHeight+rowSpacing, buttonWidth, buttonHeight));
+                   cardButtons[i][j].setBorder(null);
             }
         }
+        
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(bgPanel);
+        scrollPane.setVerticalScrollBar(new ScrollBarCustom());
         frameBgPanel.add(scrollPane, new AbsoluteConstraints(0,50,500,540));
     }
     /**
@@ -97,6 +101,7 @@ public class GameView extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         frameBgPanel.setBackground(new java.awt.Color(27, 28, 31));
+        frameBgPanel.setPreferredSize(new java.awt.Dimension(820, 590));
         frameBgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
@@ -201,9 +206,7 @@ public class GameView extends javax.swing.JFrame {
         scorePanelSign.setLayout(scorePanelSignLayout);
         scorePanelSignLayout.setHorizontalGroup(
             scorePanelSignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scorePanelSignLayout.createSequentialGroup()
-                .addComponent(scoreLabelSign, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(scoreLabelSign, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
         scorePanelSignLayout.setVerticalGroup(
             scorePanelSignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
